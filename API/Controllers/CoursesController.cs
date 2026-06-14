@@ -110,6 +110,7 @@ namespace API.Controllers
             course.isCompleted = courseUpdateDto.IsCompleted;
             course.Rating = courseUpdateDto.Rating;
             course.Notes = courseUpdateDto.Notes;
+            course.Date = DateTime.UtcNow; // update timestamp whenever the course is modified
 
             if(await courseRepository.SaveAllAsync()) return NoContent();
 
@@ -122,14 +123,14 @@ namespace API.Controllers
                 var course = await courseRepository.GetCourseByIdAsync(id);
 
                 if(course == null) return NotFound();
-                if(course.username != User.GetUsername()) return Forbid(); // Access is forbidden if the course belong to anothere existing user
+                if(course.username != User.GetUsername()) return Forbid(); // Access is forbidden if the course belong to another existing user
 
-                course.isCompleted = true;
-                course.Date = DateTime.UtcNow; // Update the date to reflect when the course was completed
+                course.isCompleted = !course.isCompleted;
+                course.Date = DateTime.UtcNow; // Update the date to reflect the change
 
                 if(await courseRepository.SaveAllAsync()) return NoContent();
 
-                return BadRequest("Failed to update course - marked as completed");
+                return BadRequest("Failed to update course completion status");
             }
             
         

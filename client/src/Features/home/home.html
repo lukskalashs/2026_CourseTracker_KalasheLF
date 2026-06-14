@@ -1,0 +1,12 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold text-primary">CourseTracker</h1>
+      <p class="py-6">Maintain a personal record of your online learning journey. Track platforms, topics, and personal notes all in one place.</p>
+      
+      @if (!accountService.currentUser()) {
+        <button class="btn btn-primary" routerLink="/register">Register Now</button>
+      }
+    </div>
+  </div>
+</div>

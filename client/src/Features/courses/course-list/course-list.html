@@ -1,0 +1,69 @@
+<div class="container mx-auto p-4">
+  
+  <div class="flex justify-between items-center mb-4 border-b pb-2">
+    <h2 class="text-2xl font-bold">My Courses</h2>
+    <button class="btn btn-sm btn-primary rounded-none" routerLink="/courses/add">Add New Course</button>
+  </div>
+
+  <div class="bg-gray-100 p-3 mb-4 border border-gray-300">
+    <p><strong>Recent Activity:</strong> You have added or updated {{ rCount }} courses in the past 30 days.</p>
+  </div>
+
+  <div class="overflow-x-auto border border-gray-300 mb-4">
+    <table class="table table-zebra w-full rounded-none">
+      <thead class="bg-gray-200 text-black">
+        <tr>
+          <th>Title</th>
+          <th>Platform</th>
+          <th>Topic</th>
+          <th>Date Updated</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (course of displayedCourses; track course.id) {
+          <tr>
+            <td>{{ course.title }}</td>
+            <td>{{ course.platformName }}</td>
+            <td>{{ course.topicName }}</td>
+            <td>{{ course.date | date:'shortDate' }}</td>
+            <td>
+              @if (course.isCompleted) {
+                <span class="text-success font-bold">Completed</span>
+              } @else {
+                <span class="text-warning font-bold">In Progress</span>
+              }
+            </td>
+            <td class="flex gap-1">
+              <button class="btn btn-xs btn-info rounded-none text-white" [routerLink]="['/courses', course.id]">View</button>
+              <button 
+                class="btn btn-xs btn-success rounded-none text-white" 
+                [disabled]="course.isCompleted"
+                (click)="MarkComplete(course.id)">
+                Complete
+              </button>
+            </td>
+          </tr>
+        }
+
+        @if (displayedCourses.length === 0) {
+          <tr>
+            <td colspan="6" class="text-center py-4">No courses found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (totalPages > 1) {
+    <div class="flex justify-center mt-4">
+      <div class="join rounded-none border border-gray-300">
+        <button class="join-item btn btn-sm rounded-none" (click)="PrevPage()" [disabled]="currentPage === 1">Prev</button>
+        <button class="join-item btn btn-sm rounded-none bg-white pointer-events-none">Page {{ currentPage }} of {{ totalPages }}</button>
+        <button class="join-item btn btn-sm rounded-none" (click)="NextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+  }
+
+</div>

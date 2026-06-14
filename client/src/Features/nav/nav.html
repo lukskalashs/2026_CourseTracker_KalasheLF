@@ -1,0 +1,35 @@
+<div class="navbar bg-base-300 shadow-md px-10">
+  <div class="flex-1">
+    <a routerLink="/" class="btn btn-ghost normal-case text-xl primary font-bold">CourseTracker</a>
+    <ul class="menu menu-horizontal px-1 font-semibold">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a routerLink="/disclaimer" routerLinkActive="active">Disclaimer</a></li>
+      
+      @if (accountService.currentUser()) {
+        <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
+      }
+    </ul>
+  </div>
+  <div class="flex-none">
+    
+    @if (accountService.currentUser(); as user) {
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost">
+          Welcome, {{ user.displayName }}
+        </div>
+        <ul tabindex="-1" class="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    } 
+    @else {
+      <form #loginForm="ngForm" (ngSubmit)="login()" class="flex gap-2" autocomplete="off">
+        <input name="username" [(ngModel)]="model.username" type="text" placeholder="Username" class="input input-sm input-bordered w-full max-w-xs" required />
+        <input name="password" [(ngModel)]="model.password" type="password" placeholder="Password" class="input input-sm input-bordered w-full max-w-xs" required />
+        <button [disabled]="!loginForm.valid" class="btn btn-sm btn-primary" type="submit">Login</button>
+      </form>
+    }
+
+  </div>
+</div>

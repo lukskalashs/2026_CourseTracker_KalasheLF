@@ -24,7 +24,8 @@ namespace API.Data
                 new Platform { Name = "Coursera" },
                 new Platform { Name = "edX" },
                 new Platform { Name = "YouTube" },
-                new Platform { Name = "LinkedIn Learning" }
+                new Platform { Name = "LinkedIn Learning" },
+                new Platform { Name = "Other"}
             };
             context.Platforms.AddRange(platforms);
             
@@ -40,7 +41,8 @@ namespace API.Data
                 new Topic { Name = "Game Development" },
                 new Topic { Name = "Artificial Intelligence" },
                 new Topic { Name = "DevOps" },
-                new Topic { Name = "UI/UX Design" }
+                new Topic { Name = "UI/UX Design" },
+                new Topic { Name = "Other"}
             };
 
             context.Topics.AddRange(topics);
