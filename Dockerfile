@@ -9,8 +9,8 @@ RUN npx ng build --configuration production
 # Stage 2: Build and publish the .NET API
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS api-build
 WORKDIR /src
-COPY api/ ./api/
-WORKDIR /src/api
+COPY API/ ./API/
+WORKDIR /src/API
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
  
