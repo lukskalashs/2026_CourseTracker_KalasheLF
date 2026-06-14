@@ -3,13 +3,14 @@ import { User } from '../../types/user';
 import { HttpClient } from '@angular/common/http';
 import { LoginCreds, RegisterCreds } from '../../types/authentication';
 import { map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
 
-  baseUrl = 'https://localhost:7037/api/';
+  baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
   private http = inject(HttpClient);
 
