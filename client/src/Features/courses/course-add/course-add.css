@@ -3,6 +3,28 @@
 	color: #0f172a;
 }
 
+.course-add-page h1,
+.course-add-page h2,
+.course-add-page p,
+.course-add-page label,
+.course-add-page label span {
+	color: #0f172a !important;
+}
+
+.course-add-page .text-slate-500,
+.course-add-page .text-slate-600 {
+	color: #475569 !important;
+}
+
+.course-add-page button:not(.text-white) {
+	color: #0f172a !important;
+}
+
+.course-add-page button.bg-blue-700,
+.course-add-page button.bg-blue-700:hover {
+	color: #ffffff !important;
+}
+
 .course-control,
 .course-control:focus,
 .course-control:hover {
