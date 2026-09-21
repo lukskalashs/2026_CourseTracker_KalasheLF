@@ -1,57 +1,70 @@
-<div class="container mx-auto p-4">
-  <div class="max-w-2xl mx-auto border border-gray-300 p-4 bg-gray-50 text-gray-900">
-    <h2 class="text-2xl font-bold mb-4 border-b border-gray-300 pb-2">Add New Course</h2>
-    
-    <form #courseForm="ngForm" (ngSubmit)="addCourse()" autocomplete="off">
-      
-      <div class="mb-4">
-        <label class="block font-bold mb-1">Course Title *</label>
-        <input type="text" name="title" [(ngModel)]="AddCourseModel.title" class="input input-sm input-bordered w-full rounded-none" required />
+<div class="min-h-[calc(100vh-4rem)] bg-slate-100 px-4 py-8 text-slate-900">
+  <div class="mx-auto max-w-3xl">
+    <div class="mb-6">
+      <p class="text-sm font-bold uppercase tracking-widest text-slate-500">Course library</p>
+      <h1 class="mt-1 text-3xl font-bold tracking-tight text-slate-950">Add a new course</h1>
+      <p class="mt-2 max-w-xl text-sm text-slate-600">Keep your learning organised by recording the course details and your progress.</p>
+    </div>
+
+    <div class="border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 bg-slate-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-slate-950">Course information</h2>
+        <p class="mt-1 text-sm text-slate-600">Fields marked with * are required.</p>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mb-4">
+      <form #courseForm="ngForm" (ngSubmit)="addCourse()" autocomplete="off" class="space-y-6 p-6">
         <div>
-          <label class="block font-bold mb-1">Platform *</label>
-          <select name="platformId" [(ngModel)]="AddCourseModel.platformId" class="select select-sm select-bordered w-full rounded-none" required>
-            <option disabled value="">Select a platform</option>
-            @for (platform of Platforms; track platform.id) {
-              <option [ngValue]="platform.id">{{ platform.name }}</option>
-            }
-          </select>
+          <label for="course-title" class="mb-2 block text-sm font-bold text-slate-800">Course title *</label>
+          <input id="course-title" type="text" name="title" [(ngModel)]="AddCourseModel.title" placeholder="e.g. Full Stack Web Development" class="input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" required />
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="course-platform" class="mb-2 block text-sm font-bold text-slate-800">Platform *</label>
+            <select id="course-platform" name="platformId" [(ngModel)]="AddCourseModel.platformId" class="select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
+              <option disabled [ngValue]="null">Choose a platform</option>
+              @for (platform of Platforms; track platform.id) {
+                <option [ngValue]="platform.id">{{ platform.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div>
+            <label for="course-topic" class="mb-2 block text-sm font-bold text-slate-800">Topic *</label>
+            <select id="course-topic" name="topicId" [(ngModel)]="AddCourseModel.topicId" class="select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
+              <option disabled [ngValue]="null">Choose a topic</option>
+              @for (topic of Topis; track topic.id) {
+                <option [ngValue]="topic.id">{{ topic.name }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="course-rating" class="mb-2 block text-sm font-bold text-slate-800">Rating <span class="font-normal text-slate-500">(optional)</span></label>
+            <input id="course-rating" type="number" name="rating" [(ngModel)]="AddCourseModel.rating" min="1" max="5" placeholder="1 to 5" class="input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" />
+          </div>
+
+          <label class="flex min-h-11 cursor-pointer items-center gap-3 border border-slate-300 bg-slate-50 px-3">
+            <input type="checkbox" name="isCompleted" [(ngModel)]="AddCourseModel.isCompleted" class="checkbox rounded-none border-slate-400 bg-white checked:border-blue-700 checked:bg-blue-700" />
+            <span>
+              <span class="block text-sm font-bold text-slate-800">Course completed</span>
+              <span class="block text-xs text-slate-500">Mark this course as finished</span>
+            </span>
+          </label>
         </div>
 
         <div>
-          <label class="block font-bold mb-1">Topic *</label>
-          <select name="topicId" [(ngModel)]="AddCourseModel.topicId" class="select select-sm select-bordered w-full rounded-none" required>
-            <option disabled value="">Select a topic</option>
-            @for (topic of Topis; track topic.id) {
-              <option [ngValue]="topic.id">{{ topic.name }}</option>
-            }
-          </select>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4 mb-4 items-center">
-        <div>
-          <label class="block font-bold mb-1">Rating (1-5)</label>
-          <input type="number" name="rating" [(ngModel)]="AddCourseModel.rating" min="1" max="5" class="input input-sm input-bordered w-full rounded-none" />
+          <label for="course-notes" class="mb-2 block text-sm font-bold text-slate-800">Personal notes <span class="font-normal text-slate-500">(optional)</span></label>
+          <textarea id="course-notes" name="notes" [(ngModel)]="AddCourseModel.notes" class="textarea min-h-32 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" rows="4" placeholder="What would you like to remember about this course?"></textarea>
         </div>
 
-        <div class="flex items-center mt-6">
-          <input type="checkbox" name="isCompleted" [(ngModel)]="AddCourseModel.isCompleted" class="checkbox checkbox-sm rounded-none mr-2 border-gray-400" />
-          <label class="font-bold cursor-pointer">Mark as Completed?</label>
+        <div class="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
+          <button type="button" class="btn rounded-none border-slate-300 bg-white text-slate-700 hover:bg-slate-100" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn rounded-none border-blue-700 bg-blue-700 text-white hover:border-blue-800 hover:bg-blue-800" [disabled]="!courseForm.valid">Save course</button>
         </div>
-      </div>
-
-      <div class="mb-4">
-        <label class="block font-bold mb-1">Personal Notes</label>
-        <textarea name="notes" [(ngModel)]="AddCourseModel.notes" class="textarea textarea-bordered w-full rounded-none" rows="3" placeholder="Add your notes here..."></textarea>
-      </div>
-
-      <div class="flex justify-end gap-2 mt-4 pt-4 border-t border-gray-300">
-        <button type="button" class="btn btn-sm rounded-none btn-outline" (click)="cancel()">Cancel</button>
-        <button type="submit" class="btn btn-sm rounded-none btn-primary" [disabled]="!courseForm.valid">Save Course</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
