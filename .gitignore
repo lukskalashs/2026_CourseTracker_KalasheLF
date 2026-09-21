@@ -330,6 +330,8 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
+# Development settings
+appsettings.Development.json
 
 # CodeRush personal settings
 .cr/personal

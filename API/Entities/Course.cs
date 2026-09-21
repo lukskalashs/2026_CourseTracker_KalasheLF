@@ -10,7 +10,7 @@ namespace API.Entities
     public class Course
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now;
+        public DateTime Date { get; set; } = DateTime.UtcNow;
         public required string Title { get; set; }
 
         // Navigation Properties - Foreign Keys

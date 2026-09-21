@@ -4,12 +4,13 @@ import { User } from '../../types/user';
 import { Course } from '../../types/course';
 import { retry } from 'rxjs';
 import { Platform, Topic } from '../../types/lookup';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  baseUrl = 'https://localhost:7037/api/';
+  baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   currentUser = signal<User | null>(null);
 

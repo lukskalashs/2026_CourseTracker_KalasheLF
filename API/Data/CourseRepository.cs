@@ -56,7 +56,7 @@ namespace API.Data
 
         public async Task<IReadOnlyList<CourseDto>> GetRecentCoursesAsync(string username)
         {
-            var ThirtyDaysAgo = DateTime.Now.AddDays(-30);
+            var ThirtyDaysAgo = DateTime.UtcNow.AddDays(-30); //Strict Postgress sql fix
 
             return await context.Courses
                 .Where(c => c.username == username && c.Date >= ThirtyDaysAgo)
