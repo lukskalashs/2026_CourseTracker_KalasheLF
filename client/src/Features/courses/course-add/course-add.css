@@ -1,0 +1,23 @@
+:host {
+	display: block;
+	color: #0f172a;
+}
+
+.course-control,
+.course-control:focus,
+.course-control:hover {
+	color: #0f172a !important;
+	background-color: #ffffff !important;
+	border-color: #cbd5e1 !important;
+	color-scheme: light;
+}
+
+.course-control::placeholder {
+	color: #64748b !important;
+	opacity: 1;
+}
+
+.course-control option {
+	color: #0f172a;
+	background-color: #ffffff;
+}
