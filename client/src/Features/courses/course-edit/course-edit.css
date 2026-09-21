@@ -1,0 +1,45 @@
+:host {
+	display: block;
+	color: #0f172a;
+}
+
+.course-edit-page h1,
+.course-edit-page h2,
+.course-edit-page p,
+.course-edit-page label,
+.course-edit-page label span {
+	color: #0f172a !important;
+}
+
+.course-edit-page .text-slate-500,
+.course-edit-page .text-slate-600 {
+	color: #475569 !important;
+}
+
+.course-control,
+.course-control:focus,
+.course-control:hover {
+	color: #0f172a !important;
+	background-color: #ffffff !important;
+	border-color: #cbd5e1 !important;
+	color-scheme: light;
+}
+
+.course-control::placeholder {
+	color: #64748b !important;
+	opacity: 1;
+}
+
+.course-control option {
+	color: #0f172a;
+	background-color: #ffffff;
+}
+
+.course-edit-page button:not(.text-white) {
+	color: #0f172a !important;
+}
+
+.course-edit-page button.bg-blue-700,
+.course-edit-page button.bg-blue-700:hover {
+	color: #ffffff !important;
+}

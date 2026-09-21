@@ -1,4 +1,4 @@
-<div class="min-h-[calc(100vh-4rem)] bg-slate-100 px-4 py-8 text-slate-900">
+<div class="course-edit-page min-h-[calc(100vh-4rem)] bg-slate-100 px-4 py-8 text-slate-900">
   <div class="mx-auto max-w-3xl">
     <div class="mb-6">
       <p class="text-sm font-bold uppercase tracking-widest text-slate-500">Course library</p>
@@ -15,13 +15,13 @@
       <form #courseForm="ngForm" (ngSubmit)="UpdateCourse()" autocomplete="off" class="space-y-6 p-6">
         <div>
           <label for="edit-course-title" class="mb-2 block text-sm font-bold text-slate-800">Course title *</label>
-          <input id="edit-course-title" type="text" name="title" [(ngModel)]="CourseEditmodel.title" placeholder="Course title" class="input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" required />
+          <input id="edit-course-title" type="text" name="title" [(ngModel)]="CourseEditmodel.title" placeholder="Course title" class="course-control input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" required />
         </div>
 
         <div class="grid gap-5 md:grid-cols-2">
           <div>
             <label for="edit-course-platform" class="mb-2 block text-sm font-bold text-slate-800">Platform *</label>
-            <select id="edit-course-platform" name="platformId" [(ngModel)]="CourseEditmodel.platformId" class="select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
+            <select id="edit-course-platform" name="platformId" [(ngModel)]="CourseEditmodel.platformId" class="course-control select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
               @for (platform of platforms; track platform.id) {
                 <option [ngValue]="platform.id">{{ platform.name }}</option>
               }
@@ -30,7 +30,7 @@
 
           <div>
             <label for="edit-course-topic" class="mb-2 block text-sm font-bold text-slate-800">Topic *</label>
-            <select id="edit-course-topic" name="topicId" [(ngModel)]="CourseEditmodel.topicId" class="select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
+            <select id="edit-course-topic" name="topicId" [(ngModel)]="CourseEditmodel.topicId" class="course-control select h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:outline-none" required>
               @for (topic of topics; track topic.id) {
                 <option [ngValue]="topic.id">{{ topic.name }}</option>
               }
@@ -41,7 +41,7 @@
         <div class="grid gap-5 md:grid-cols-2">
           <div>
             <label for="edit-course-rating" class="mb-2 block text-sm font-bold text-slate-800">Rating <span class="font-normal text-slate-500">(optional)</span></label>
-            <input id="edit-course-rating" type="number" name="rating" [(ngModel)]="CourseEditmodel.rating" min="1" max="5" placeholder="1 to 5" class="input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" />
+            <input id="edit-course-rating" type="number" name="rating" [(ngModel)]="CourseEditmodel.rating" min="1" max="5" placeholder="1 to 5" class="course-control input h-11 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" />
           </div>
 
           <label class="flex min-h-11 cursor-pointer items-center gap-3 border border-slate-300 bg-slate-50 px-3">
@@ -55,7 +55,7 @@
 
         <div>
           <label for="edit-course-notes" class="mb-2 block text-sm font-bold text-slate-800">Personal notes <span class="font-normal text-slate-500">(optional)</span></label>
-          <textarea id="edit-course-notes" name="notes" [(ngModel)]="CourseEditmodel.notes" class="textarea min-h-32 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" rows="4" placeholder="What would you like to remember about this course?"></textarea>
+          <textarea id="edit-course-notes" name="notes" [(ngModel)]="CourseEditmodel.notes" class="course-control textarea min-h-32 w-full rounded-none border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none" rows="4" placeholder="What would you like to remember about this course?"></textarea>
         </div>
 
         <div class="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end">
