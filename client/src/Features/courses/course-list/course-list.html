@@ -60,7 +60,7 @@
     <div class="flex justify-center mt-4">
       <div class="join rounded-none border border-gray-300">
         <button class="join-item btn btn-sm rounded-none" (click)="PrevPage()" [disabled]="currentPage === 1">Prev</button>
-        <button class="join-item btn btn-sm rounded-none bg-white pointer-events-none">Page {{ currentPage }} of {{ totalPages }}</button>
+        <button class="join-item btn btn-sm rounded-none pointer-events-none">Page {{ currentPage }} of {{ totalPages }}</button>
         <button class="join-item btn btn-sm rounded-none" (click)="NextPage()" [disabled]="currentPage === totalPages">Next</button>
       </div>
     </div>
