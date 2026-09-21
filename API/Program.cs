@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +20,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection is not configured.");
+var postgresConnection = new NpgsqlConnectionStringBuilder(connectionString)
+{
+    GssEncryptionMode = GssEncryptionMode.Disable
+}.ConnectionString;
 
 builder.Services.AddDbContext<AppDbContext>(Options =>
 {
-    Options.UseNpgsql(connectionString, npgsqlOptions =>
+    Options.UseNpgsql(postgresConnection, npgsqlOptions =>
     {
         npgsqlOptions.EnableRetryOnFailure(
             maxRetryCount: 5,
